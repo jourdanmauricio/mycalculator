@@ -8,12 +8,12 @@ import (
 	"strconv"
 )
 
-type calc struct {
+type Calc struct {
 	e1 int
 	e2 int
 }
 
-func (self calc) operate(operador string) int {
+func (self Calc) Operate(operador string) int {
 	operador1 := self.e1
 	operador2 := self.e2
 
@@ -52,7 +52,7 @@ func LeerEntrada() string {
 	return scanner.Text()
 }
 
-func getOperands(entrada string) (calc, string) {
+func GetOperands(entrada string) (Calc, string) {
 	regex := regexp.MustCompile(`^(\d+)([\+\-\*\/])(\d+)$`)
 
 	//entrada := leerEntrada()
@@ -62,11 +62,11 @@ func getOperands(entrada string) (calc, string) {
 		operador := regex.ReplaceAllString(entrada, "$2")
 		entrada2 := parsear(regex.ReplaceAllString(entrada, "$3"))
 
-		c := calc{e1: entrada1, e2: entrada2}
+		c := Calc{e1: entrada1, e2: entrada2}
 		//toPrint := c.operate(operador)
 		return c, operador
 		//fmt.Println(toPrint)
 	} else {
-		return calc{}, ""
+		return Calc{}, ""
 	}
 }
